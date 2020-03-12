@@ -37,6 +37,9 @@ public class FlyingFishView extends View {
         scorePaint.setAntiAlias(true);
         yellowPaint.setColor(Color.YELLOW);
         yellowPaint.setAntiAlias(false);
+
+        greenPaint.setColor(Color.GREEN);
+        greenPaint.setAntiAlias(false);
         life[0]=BitmapFactory.decodeResource(getResources(),R.drawable.hearts);
         life[1]=BitmapFactory.decodeResource(getResources(),R.drawable.heart_grey);
 
@@ -84,6 +87,21 @@ public class FlyingFishView extends View {
         }
 
         canvas.drawCircle(yellowX,yellowY,25,yellowPaint);
+        greenX=greenX-greenSpeed;
+        if(hitBallChecker(greenX,greenY)) {
+            score=score+20;
+
+            greenX =-100;
+        }
+
+        if(greenX<0){
+
+            greenX=canvasWidth+21;
+
+            greenY=(int)Math.floor(Math.random()*(maxFishY-minFishY))+minFishY;
+        }
+
+        canvas.drawCircle(greenX,greenY ,25,greenPaint);
         canvas.drawText("Score" + score,20,60,scorePaint);
         canvas.drawBitmap(life[0],580,10,null);
         canvas.drawBitmap(life[0],680,10,null);
