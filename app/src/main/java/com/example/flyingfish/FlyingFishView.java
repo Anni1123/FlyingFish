@@ -13,7 +13,12 @@ import android.view.View;
 public class FlyingFishView extends View {
     private Bitmap fish[]=new Bitmap[2];
     private int fishX=10;
+    private int yellowX,yellowY,yellowSpeed=16;
     private int fishY;
+    private Paint yellowPaint=new Paint();
+    private int greenX,greenY,greenSpeed=20;
+    private Paint greenPaint=new Paint();
+    private int score;
     private int fishspeed;
     private int canvasWidth,canvasHeight;
     private Bitmap background;
@@ -30,10 +35,13 @@ public class FlyingFishView extends View {
         scorePaint.setTextSize(70);
         scorePaint.setTypeface(Typeface.DEFAULT_BOLD);
         scorePaint.setAntiAlias(true);
+        yellowPaint.setColor(Color.YELLOW);
+        yellowPaint.setAntiAlias(false);
         life[0]=BitmapFactory.decodeResource(getResources(),R.drawable.hearts);
         life[1]=BitmapFactory.decodeResource(getResources(),R.drawable.heart_grey);
 
         fishY=550;
+        score=0;
     }
 
     @Override
@@ -60,10 +68,33 @@ public class FlyingFishView extends View {
         else{
             canvas.drawBitmap(fish[0],fishX,fishY,null);
         }
-        canvas.drawText("Score",20,60,scorePaint);
+
+        yellowX=yellowX-yellowSpeed;
+        if(hitBallChecker(yellowX,yellowY)) {
+            score=score+10;
+
+            yellowX =-100;
+        }
+
+        if(yellowX<0){
+
+            yellowX=canvasWidth+21;
+
+            yellowY=(int)Math.floor(Math.random()*(maxFishY-minFishY))+minFishY;
+        }
+
+        canvas.drawCircle(yellowX,yellowY,25,yellowPaint);
+        canvas.drawText("Score" + score,20,60,scorePaint);
         canvas.drawBitmap(life[0],580,10,null);
         canvas.drawBitmap(life[0],680,10,null);
         canvas.drawBitmap(life[0],780,10,null);
+    }
+    public Boolean hitBallChecker(int x,int y){
+        if(fishX<x && x < (fishX+fish[0].getWidth())&&fishY<y &&y<(fishY+fish[0].getWidth())){
+
+            return true;
+        }
+        return false;
     }
 
     @Override
