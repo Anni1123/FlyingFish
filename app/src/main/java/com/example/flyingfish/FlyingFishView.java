@@ -102,6 +102,7 @@ public class FlyingFishView extends View {
                 Toast.makeText(getContext(),"Game Over",Toast.LENGTH_SHORT).show();
                 Intent gameoverIntent=new Intent(getContext(),GameOverActivity.class);
                 gameoverIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                gameoverIntent.putExtra("score",score);
                 getContext().startActivity(gameoverIntent);
             }
         }
