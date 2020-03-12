@@ -155,7 +155,7 @@ public class FlyingFishView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction()==MotionEvent.ACTION_DOWN){
             touch=true;
-            fishspeed=-22;
+            fishspeed=-35;
         }
         return true;
     }
