@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class FlyingFishView extends View {
     private Bitmap fish[]=new Bitmap[2];
     private int fishX=10;
-    private int yellowX,yellowY,yellowSpeed=16;
+    private int yellowX,yellowY,yellowSpeed=15;
     private int fishY;
     private Paint yellowPaint=new Paint();
     private int greenX,greenY,greenSpeed=20;
@@ -135,7 +135,7 @@ public class FlyingFishView extends View {
         canvas.drawCircle(greenX,greenY ,25,greenPaint);
         whiteX=whiteX-whiteSpeed;
         if(hitBallChecker(whiteX,whiteY)) {
-
+            score=score+30;
             if(lifeCounter==3){
                 return;
             }
@@ -178,7 +178,7 @@ public class FlyingFishView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction()==MotionEvent.ACTION_DOWN){
             touch=true;
-            fishspeed=-35;
+            fishspeed=-30;
         }
         return true;
     }
