@@ -121,7 +121,7 @@ public class FlyingFishView extends View {
         canvas.drawCircle(redX,redY,30,redPaint);
         greenX=greenX-greenSpeed;
         if(hitBallChecker(greenX,greenY)) {
-            score=score+20;
+            score=score+15;
             greenX =-100;
         }
 
