@@ -118,7 +118,7 @@ public class FlyingFishView extends View {
             redY=(int)Math.floor(Math.random()*(maxFishY-minFishY))+minFishY;
         }
 
-        canvas.drawCircle(redX,redY,30,redPaint);
+        canvas.drawCircle(redX,redY,25,redPaint);
         greenX=greenX-greenSpeed;
         if(hitBallChecker(greenX,greenY)) {
             score=score+15;
@@ -178,7 +178,7 @@ public class FlyingFishView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction()==MotionEvent.ACTION_DOWN){
             touch=true;
-            fishspeed=-30;
+            fishspeed=-35;
         }
         return true;
     }
