@@ -27,6 +27,7 @@ public class FlyingFishView extends View {
     private Paint redPaint=new Paint();
     private int score,lifeCounter;
     private int fishspeed;
+    int maxFishY;
     private SharedPreferences prefs;
     private int canvasWidth,canvasHeight;
     private Bitmap background;
@@ -67,7 +68,8 @@ public class FlyingFishView extends View {
         canvasHeight=canvas.getHeight();
         canvas.drawBitmap(background,0,0,null);
         int minFishY=fish[0].getHeight();
-        int maxFishY=canvasHeight-fish[0].getHeight()*3;
+             maxFishY = canvasHeight - fish[0].getHeight() * 3;
+
         fishY=fishY+fishspeed;
         if(fishY<minFishY){
             fishY=minFishY;
