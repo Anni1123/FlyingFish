@@ -118,7 +118,7 @@ public class FlyingFishView extends View {
             redY=(int)Math.floor(Math.random()*(maxFishY-minFishY))+minFishY;
         }
 
-        canvas.drawCircle(redX,redY,25,redPaint);
+        canvas.drawCircle(redX,redY,45,redPaint);
         greenX=greenX-greenSpeed;
         if(hitBallChecker(greenX,greenY)) {
             score=score+15;
