@@ -99,6 +99,15 @@ public class FlyingFishView extends View {
             yellowY=(int)Math.floor(Math.random()*(maxFishY-minFishY))+minFishY;
         }
 
+        if(score<100) {
+            canvas.drawCircle(yellowX,yellowY,30,yellowPaint);
+        }
+        else if(score<300){
+            canvas.drawCircle(yellowX,yellowY,25,yellowPaint);
+        }
+        else{
+            canvas.drawCircle(yellowX,yellowY,20,yellowPaint);
+        }
         canvas.drawCircle(yellowX,yellowY,25,yellowPaint);
         redX=redX-redSpeed;
         if(hitBallChecker(redX,redY)) {
@@ -120,11 +129,14 @@ public class FlyingFishView extends View {
             redY=(int)Math.floor(Math.random()*(maxFishY-minFishY))+minFishY;
         }
 
-        if(score>100) {
-            canvas.drawCircle(redX, redY, 45, redPaint);
+        if(score<100) {
+            canvas.drawCircle(redX, redY, 20, redPaint);
+        }
+        else if(score<300){
+            canvas.drawCircle(redX, redY,30 , redPaint);
         }
         else{
-            canvas.drawCircle(redX, redY, 20, redPaint);
+            canvas.drawCircle(redX, redY, 40, redPaint);
         }
         greenX=greenX-greenSpeed;
         if(hitBallChecker(greenX,greenY)) {
@@ -139,6 +151,15 @@ public class FlyingFishView extends View {
             greenY=(int)Math.floor(Math.random()*(maxFishY-minFishY))+minFishY;
         }
 
+        if(score<100) {
+            canvas.drawCircle(greenX,greenY ,25,greenPaint);
+        }
+        else if(score<300){
+            canvas.drawCircle(greenX,greenY ,20,greenPaint);
+        }
+        else{
+            canvas.drawCircle(greenX,greenY ,15,greenPaint);
+        }
         canvas.drawCircle(greenX,greenY ,25,greenPaint);
         whiteX=whiteX-whiteSpeed;
         if(hitBallChecker(whiteX,whiteY)) {
@@ -197,7 +218,19 @@ public class FlyingFishView extends View {
             else if(score<200){
                 fishspeed = -30;
             }
-            else {
+            else if(score<250){
+                fishspeed = -35;
+            }
+            else if(score<300){
+                fishspeed = -40;
+            }else if(score<350){
+                fishspeed = -45;
+            }else if(score<400){
+                fishspeed = -50;
+            }else if(score<500){
+                fishspeed = -50;
+            }
+            else{
                 fishspeed=-60;
             }
         }
