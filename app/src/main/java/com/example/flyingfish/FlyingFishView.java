@@ -68,7 +68,7 @@ public class FlyingFishView extends View {
         canvasHeight=canvas.getHeight();
         canvas.drawBitmap(background,0,0,null);
         int minFishY=fish[0].getHeight();
-             maxFishY = canvasHeight - fish[0].getHeight() * 3;
+             maxFishY = canvasHeight - fish[0].getHeight() ;
 
         fishY=fishY+fishspeed;
         if(fishY<minFishY){
