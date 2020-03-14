@@ -37,7 +37,7 @@ public class FlyingFishView extends View {
         super(context);
         fish[0]= BitmapFactory.decodeResource(getResources(),R.drawable.fish1);
         fish[1]= BitmapFactory.decodeResource(getResources(),R.drawable.fish2);
-
+        prefs = context.getSharedPreferences("game", Context.MODE_PRIVATE);
         background=BitmapFactory.decodeResource(getResources(),R.drawable.background);
         scorePaint.setColor(Color.WHITE);
         scorePaint.setTextSize(70);
@@ -88,7 +88,7 @@ public class FlyingFishView extends View {
         yellowX=yellowX-yellowSpeed;
         if(hitBallChecker(yellowX,yellowY)) {
             score=score+10;
-
+            saveIfHighScore();
             yellowX =-100;
         }
 
@@ -141,6 +141,7 @@ public class FlyingFishView extends View {
         greenX=greenX-greenSpeed;
         if(hitBallChecker(greenX,greenY)) {
             score=score+15;
+            saveIfHighScore();
             greenX =-100;
         }
 
