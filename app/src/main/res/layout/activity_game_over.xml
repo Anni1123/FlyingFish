@@ -33,19 +33,21 @@
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"
         android:textStyle="bold"/>
-\
+    \
+
     <TextView
         android:id="@+id/scoreap"
         android:layout_width="165dp"
         android:layout_height="71dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="200dp"
-        android:layout_marginBottom="275dp"
+        android:layout_marginEnd="174dp"
+        android:layout_marginBottom="274dp"
         android:text="Score"
         android:textColor="@color/colorAccent"
         android:textSize="50sp"
         android:textStyle="bold" />
+
     <TextView
         android:id="@+id/scorea"
         android:layout_width="165dp"

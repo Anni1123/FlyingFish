@@ -3,7 +3,9 @@ package com.example.flyingfish;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -16,7 +18,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try {
 
-                    sleep(5000);
+                    sleep(1000);
                 }
                 catch (Exception e){
 
@@ -30,6 +32,10 @@ public class SplashActivity extends AppCompatActivity {
             }
         };
         thread.start();
+        TextView highScoreTxt = findViewById(R.id.highScore);
+
+        final SharedPreferences prefs = getSharedPreferences("game", MODE_PRIVATE);
+        highScoreTxt.setText("HighScore: " + prefs.getInt("highscore", 0));
     }
 
     @Override

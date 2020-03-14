@@ -2,6 +2,7 @@ package com.example.flyingfish;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -26,6 +27,7 @@ public class FlyingFishView extends View {
     private Paint redPaint=new Paint();
     private int score,lifeCounter;
     private int fishspeed;
+    private SharedPreferences prefs;
     private int canvasWidth,canvasHeight;
     private Bitmap background;
     private Boolean touch=false;
@@ -118,7 +120,12 @@ public class FlyingFishView extends View {
             redY=(int)Math.floor(Math.random()*(maxFishY-minFishY))+minFishY;
         }
 
-        canvas.drawCircle(redX,redY,45,redPaint);
+        if(score>100) {
+            canvas.drawCircle(redX, redY, 45, redPaint);
+        }
+        else{
+            canvas.drawCircle(redX, redY, 20, redPaint);
+        }
         greenX=greenX-greenSpeed;
         if(hitBallChecker(greenX,greenY)) {
             score=score+15;
@@ -135,18 +142,15 @@ public class FlyingFishView extends View {
         canvas.drawCircle(greenX,greenY ,25,greenPaint);
         whiteX=whiteX-whiteSpeed;
         if(hitBallChecker(whiteX,whiteY)) {
-            score=score+30;
             if(lifeCounter==3){
                 return;
             }
             else{
                 lifeCounter++;
             }
-            whiteX=-100;
         }
 
         if(whiteX<0){
-
             whiteX=canvasWidth+21;
             whiteY=(int)Math.floor(Math.random()*(maxFishY-minFishY))+minFishY;
         }
@@ -166,6 +170,15 @@ public class FlyingFishView extends View {
         }
 
     }
+    private void saveIfHighScore() {
+
+        if (prefs.getInt("highscore", 0) < score) {
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt("highscore", score);
+            editor.apply();
+        }
+
+    }
     public Boolean hitBallChecker(int x,int y){
         if(fishX<x && x < (fishX+fish[0].getWidth())&&fishY<y &&y<(fishY+fish[0].getWidth())){
 
@@ -178,7 +191,15 @@ public class FlyingFishView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction()==MotionEvent.ACTION_DOWN){
             touch=true;
-            fishspeed=-35;
+            if(score<100) {
+                fishspeed = -25;
+            }
+            else if(score<200){
+                fishspeed = -30;
+            }
+            else {
+                fishspeed=-60;
+            }
         }
         return true;
     }
